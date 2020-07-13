@@ -7,7 +7,7 @@ import HabbitList from './containers/HabitList/HabitList';
 function App() {
   return (
     <div className="App">
-      <h2>Hello from App.js</h2>
+      <h2>HABIT APPLICATION</h2>
       <Main />
       <br />
       <HabbitList />

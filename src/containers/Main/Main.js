@@ -9,22 +9,18 @@ export default class Main extends Component {
             <div className="Main">
                 <h2>Make a habit</h2>
                 <FormControl>
-                    <InputLabel htmlFor="my-input">Input your habit</InputLabel>
+                    <InputLabel htmlFor="my-input">Habit name </InputLabel>
                     <Input id="my-input" aria-describedby="my-helper-text" />
                 </FormControl>
+
                 <br />
                 <FormControl>
-                    <InputLabel htmlFor="my-input">How much hours</InputLabel>
-                    <Input id="my-input" aria-describedby="my-helper-text" />
-                </FormControl>
-                <br />
-                <FormControl>
-                    <InputLabel htmlFor="my-input">Description</InputLabel>
+                    <InputLabel htmlFor="my-input">Habit description</InputLabel>
                     <Input id="my-input" aria-describedby="my-helper-text" />
                 </FormControl>
                 <br />
                 <Button variant="contained" color="primary">
-                    Save
+                    Add
                 </Button>
             </div>
         )
