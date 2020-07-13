@@ -1,17 +1,21 @@
-import React from 'react';
-import Main from './containers/Main/Main';
+import React from "react";
+import Main from "./containers/Main/Main";
 
 import "./App.css";
-import HabbitList from './containers/HabitList/HabitList';
+import HabitList from "./containers/HabitList/HabitList";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 function App() {
   return (
-    <div className="App">
-      <h2>HABIT APPLICATION</h2>
-      <Main />
-      <br />
-      <HabbitList />
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <h2>HABIT APPLICATION</h2>
+        <Main />
+        <br />
+        <HabitList />
+      </div>
+    </Provider>
   );
 }
 

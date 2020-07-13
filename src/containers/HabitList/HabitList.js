@@ -9,34 +9,26 @@ import {
   TableContainer,
   Button,
 } from "@material-ui/core";
+import { connect } from "react-redux";
 
 import "./HabitList.css";
 
-export default class HabbitList extends Component {
+class HabitList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      habits: [
-        {
-          id: 1,
-          name: "Habit one",
-          description: "Description habit one",
-        },
-        {
-          id: 2,
-          name: "Habit two",
-          description: "Description habit two",
-        },
-        {
-          id: 3,
-          name: "Habit three",
-          description: "Description habit three",
-        },
-      ],
+      habits: [],
     };
   }
 
+  componentDidMount() {
+    this.setState({
+      habits: this.props.habits,
+    });
+  }
+
   render() {
+    console.log(this.state.habits);
     return (
       <div className="HabitList">
         <h4>List of your habits</h4>
@@ -72,3 +64,9 @@ export default class HabbitList extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  habits: state.habits,
+});
+
+export default connect(mapStateToProps)(HabitList);
