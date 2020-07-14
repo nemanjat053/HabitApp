@@ -11,7 +11,7 @@ class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: props.habits[props.habits.length - 1].id,
+      id: props.habits.id ? props.habits[props.habits.length - 1].id : null,
       name: "",
       description: "",
       habits: props.habits,

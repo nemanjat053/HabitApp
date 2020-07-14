@@ -1,23 +1,7 @@
 import * as actions from "./actionTypes";
 
 const initialState = {
-  habits: [
-    {
-      id: 1,
-      name: "Habit one",
-      description: "Description habit one",
-    },
-    {
-      id: 2,
-      name: "Habit two",
-      description: "Description habit two",
-    },
-    {
-      id: 3,
-      name: "Habit three",
-      description: "Description habit three",
-    },
-  ],
+  habits: [],
 };
 
 export default function reducer(state = initialState, action) {
