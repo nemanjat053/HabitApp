@@ -6,7 +6,6 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    // case for getting fetched data
     case actions.GET_HABIT:
       return Object.assign({}, state, {
         habits: action.data,

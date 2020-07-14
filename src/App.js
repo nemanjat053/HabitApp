@@ -19,10 +19,4 @@ function App() {
   );
 }
 
-// TODO: Delete this after
-store.subscribe(() => {
-  console.log("Store changed", store.getState());
-});
-
-
 export default App;
