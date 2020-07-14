@@ -70,11 +70,14 @@ class HabitList extends Component {
         </Table>
       </TableContainer>
     );
-    const habitsFalse = <h2>There is no habit</h2>;
     return (
       <div className="HabitList">
         <h4>List of your habits</h4>
-        {this.state.habits.length === null ? habitsTrue : habitsFalse}
+        {this.state.habits.length === null ? (
+          habitsTrue
+        ) : (
+          <h2>There is no habit</h2>
+        )}
       </div>
     );
   }
