@@ -37,42 +37,44 @@ class HabitList extends Component {
 
   render() {
     const habitsTrue = (
-      <TableContainer component={Paper}>
-        <Table className="table" aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>#</TableCell>
-              <TableCell align="center">Habit</TableCell>
-              <TableCell align="center">Description</TableCell>
-              <TableCell align="center">Action</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {this.state.habits.map((habit, index) => (
-              <TableRow key={index}>
-                <TableCell component="th" scope="row">
-                  {habit.id}
-                </TableCell>
-                <TableCell align="center"> {habit.name}</TableCell>
-                <TableCell align="center">{habit.description}</TableCell>
-                <TableCell align="center">
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    onClick={() => this.handleDelete(habit.id)}
-                  >
-                    Delete
-                  </Button>
-                </TableCell>
+      <React.Fragment>
+        <h4>List of your habits</h4>
+        <TableContainer component={Paper}>
+          <Table className="table" aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>#</TableCell>
+                <TableCell align="center">Habit</TableCell>
+                <TableCell align="center">Description</TableCell>
+                <TableCell align="center">Action</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </TableHead>
+            <TableBody>
+              {this.state.habits.map((habit, index) => (
+                <TableRow key={index}>
+                  <TableCell component="th" scope="row">
+                    {habit.id}
+                  </TableCell>
+                  <TableCell align="center"> {habit.name}</TableCell>
+                  <TableCell align="center">{habit.description}</TableCell>
+                  <TableCell align="center">
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={() => this.handleDelete(habit.id)}
+                    >
+                      Delete
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </React.Fragment>
     );
     return (
       <div className="HabitList">
-        <h4>List of your habits</h4>
         {this.state.habits.length === null ? (
           habitsTrue
         ) : (
