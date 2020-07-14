@@ -11,11 +11,8 @@ class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // TODO: Need to create id and get last id from habits
-      // TODO: To create id and set it on add
       name: "",
       description: "",
-      habits: [],
     };
 
     this.handleNameChange = this.handleNameChange.bind(this);
@@ -37,14 +34,11 @@ class Main extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.habitAdd(this.state.name, this.state.description);
-    alert(this.state.id);
-    // window.location.reload(false);
+    this.props.habitAdd(null, this.state.name, this.state.description);
+    window.location.reload(false);
   }
 
   render() {
-    // TODO: Getting habits from state, from fetching data from json server
-    // const { habits } = this.props;
     return (
       <div className="Main">
         <h2>Make a habit</h2>

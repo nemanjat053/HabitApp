@@ -13,14 +13,10 @@ export default function reducer(state = initialState, action) {
       });
 
     case actions.ADD_HABIT:
-      return [
-        ...state.habits,
-        {
-          id: action.payload.id,
-          name: action.payload.name,
-          description: action.payload.description,
-        },
-      ];
+      const habits = { ...state.habits };
+      return Object.assign({}, state, {
+        habits: habits,
+      });
 
     case actions.DELETE_HABIT:
       return {
