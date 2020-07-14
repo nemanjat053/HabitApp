@@ -1,15 +1,6 @@
 import * as actions from "./actionTypes";
 import axios from "axios";
 
-// export const habitAdd = (id, name, description) => ({
-//   type: actions.ADD_HABIT,
-//   payload: {
-//     id,
-//     name,
-//     description,
-//   },
-// });
-
 export const habitAdd = (id, name, description) => {
   return (dispatch) =>
     axios
@@ -19,12 +10,12 @@ export const habitAdd = (id, name, description) => {
       });
 };
 
-export const habitDelete = (id) => ({
-  type: actions.DELETE_HABIT,
-  payload: {
-    id,
-  },
-});
+export const habitDelete = (id) => {
+  return (dispatch) =>
+    axios.delete("http://localhost:3004/habits" + `/${id}`).then((response) => {
+      dispatch({ type: actions.DELETE_HABIT, data: response.data });
+    });
+};
 
 export const habitGet = () => {
   return (dispatch) =>

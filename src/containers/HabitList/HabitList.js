@@ -23,6 +23,7 @@ class HabitList extends Component {
 
   handleDelete(id) {
     this.props.habitDelete(id);
+    window.location.reload(false);
   }
 
   componentDidMount() {

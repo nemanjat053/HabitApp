@@ -21,7 +21,7 @@ export default function reducer(state = initialState, action) {
     case actions.DELETE_HABIT:
       return {
         ...state,
-        habits: state.habits.filter((habit) => habit.id !== action.payload.id),
+        habits: state.habits.filter((habit) => habit.id !== action.id),
       };
 
     default:

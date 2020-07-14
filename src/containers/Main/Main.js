@@ -3,7 +3,7 @@ import { FormControl, InputLabel, Input, Button } from "@material-ui/core";
 import { connect } from "react-redux";
 
 // Dispatch actions
-import { habitAdd, habitGet } from "../../redux/actions";
+import { habitAdd, habitGet, habitDelete } from "../../redux/actions";
 
 import "./Main.css";
 
