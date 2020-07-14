@@ -73,6 +73,7 @@ class HabitList extends Component {
         </TableContainer>
       </React.Fragment>
     );
+
     return (
       <div className="HabitList">
         {this.state.habits.length === 0 ? (
