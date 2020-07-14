@@ -11,25 +11,20 @@ import {
 } from "@material-ui/core";
 import { connect } from "react-redux";
 
-import { habitDelete } from "../../redux/actions";
-
 import "./HabitList.css";
 
 class HabitList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      habits: [props.habits],
+      habits: [],
     };
-
-    this.handleDelete = this.handleDelete.bind(this);
   }
 
-  
-
-  handleDelete(id) {
-    this.props.habitDelete(id);
-    window.location.reload(false);
+  componentDidMount() {
+    this.setState({
+      habits: this.props.habits,
+    });
   }
 
   render() {
@@ -47,19 +42,15 @@ class HabitList extends Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {this.state.habits.map((habit) => (
-                <TableRow key={habit.id}>
+              {this.state.habits.map((habit, index) => (
+                <TableRow key={index}>
                   <TableCell component="th" scope="row">
                     {habit.id}
                   </TableCell>
                   <TableCell align="center"> {habit.name}</TableCell>
                   <TableCell align="center">{habit.description}</TableCell>
                   <TableCell align="center">
-                    <Button
-                      variant="contained"
-                      color="secondary"
-                      onClick={this.handleDelete(habit.id)}
-                    >
+                    <Button variant="contained" color="secondary">
                       Delete
                     </Button>
                   </TableCell>
@@ -77,8 +68,4 @@ const mapStateToProps = (state) => ({
   habits: state.habits,
 });
 
-const mapDispatchToProps = {
-  habitDelete,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(HabitList);
+export default connect(mapStateToProps)(HabitList);

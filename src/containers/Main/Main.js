@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { FormControl, InputLabel, Input, Button } from "@material-ui/core";
 import { connect } from "react-redux";
 
-import { habitDelete } from "../../redux/actions";
+// Dispatch actions
+import { habitAdd } from "../../redux/actions";
 
 import "./Main.css";
 
@@ -31,20 +32,12 @@ class Main extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    let newHabit = {
-      id: this.state.id + 1,
-      name: this.state.name,
-      description: this.state.description,
-    };
-    this.props.habitAdd(newHabit.id, newHabit.name, newHabit.description);
+    this.props.habitAdd(
+      Number(this.state.id) + 1,
+      this.state.name,
+      this.state.description
+    );
     window.location.reload(false);
-
-    // Reset
-    // newHabit = {
-    //   id: null,
-    //   name: null,
-    //   description: null,
-    // };
   }
 
   render() {
@@ -86,8 +79,11 @@ const mapStateToProps = (state) => ({
   habits: state.habits,
 });
 
-const mapDispatchToProps = {
-  habitDelete,
+const mapDispatchToProps = (dispatch) => {
+  return {
+    habitAdd: (id, habitName, description) =>
+      dispatch(habitAdd(id, habitName, description)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
