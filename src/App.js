@@ -19,10 +19,10 @@ function App() {
   );
 }
 
-
 // TODO: Delete this after
-// const unsubscribe = store.subscribe(() => {
-//   console.log("Store changed", store.getState());
-// });
+store.subscribe(() => {
+  console.log("Store changed", store.getState());
+});
+
 
 export default App;

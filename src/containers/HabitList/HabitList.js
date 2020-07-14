@@ -11,6 +11,8 @@ import {
 } from "@material-ui/core";
 import { connect } from "react-redux";
 
+import { habitDelete } from "../../redux/actions";
+
 import "./HabitList.css";
 
 class HabitList extends Component {
@@ -19,6 +21,12 @@ class HabitList extends Component {
     this.state = {
       habits: [],
     };
+
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  handleDelete(id) {
+    this.props.habitDelete(id);
   }
 
   componentDidMount() {
@@ -50,7 +58,11 @@ class HabitList extends Component {
                   <TableCell align="center"> {habit.name}</TableCell>
                   <TableCell align="center">{habit.description}</TableCell>
                   <TableCell align="center">
-                    <Button variant="contained" color="secondary">
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={() => this.handleDelete(habit.id)}
+                    >
                       Delete
                     </Button>
                   </TableCell>
@@ -68,4 +80,10 @@ const mapStateToProps = (state) => ({
   habits: state.habits,
 });
 
-export default connect(mapStateToProps)(HabitList);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    habitDelete: (id) => dispatch(habitDelete(id)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HabitList);
