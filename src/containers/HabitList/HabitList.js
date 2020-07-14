@@ -19,7 +19,7 @@ class HabitList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      habits: [],
+      habits: [props.habits],
     };
 
     this.handleDelete = this.handleDelete.bind(this);
@@ -75,10 +75,10 @@ class HabitList extends Component {
     );
     return (
       <div className="HabitList">
-        {this.state.habits.length === null ? (
-          habitsTrue
-        ) : (
+        {this.state.habits.length === 0 ? (
           <h2>There is no habit</h2>
+        ) : (
+          habitsTrue
         )}
       </div>
     );
