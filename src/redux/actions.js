@@ -1,8 +1,9 @@
 import * as actions from "./actionTypes";
 
-export const habitAdd = (name, description) => ({
+export const habitAdd = (id, name, description) => ({
   type: actions.ADD_HABIT,
   payload: {
+    id,
     name,
     description,
   },

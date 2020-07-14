@@ -1,6 +1,6 @@
 import * as actions from "./actionTypes";
 
-const initialTodos = {
+const initialState = {
   habits: [
     {
       id: 1,
@@ -20,18 +20,22 @@ const initialTodos = {
   ],
 };
 
-export default function reducer(state = initialTodos, action) {
+console.log(initialState);
+
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case actions.ADD_HABIT:
-      return [
-        ...state,
-        {
-          name: action.payload.name,
-          description: action.payload.description,
-        },
-      ];
+      return Object.assign({}, state, {
+        habits: [
+          ...state.habits,
+          {
+            id: action.payload.id,
+            name: action.payload.name,
+            description: action.payload.description,
+          },
+        ],
+      });
 
-    //   Filter habits and return habits which does not equal provided id
     case actions.DELETE_HABIT:
       return state.filter((habit) => habit.id !== action.payload.id);
 

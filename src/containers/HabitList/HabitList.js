@@ -11,24 +11,28 @@ import {
 } from "@material-ui/core";
 import { connect } from "react-redux";
 
+import { habitDelete } from "../../redux/actions";
+
 import "./HabitList.css";
 
 class HabitList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      habits: [],
+      habits: [props.habits],
     };
+
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
-  componentDidMount() {
-    this.setState({
-      habits: this.props.habits,
-    });
+  
+
+  handleDelete(id) {
+    this.props.habitDelete(id);
+    window.location.reload(false);
   }
 
   render() {
-    console.log(this.state.habits);
     return (
       <div className="HabitList">
         <h4>List of your habits</h4>
@@ -51,7 +55,11 @@ class HabitList extends Component {
                   <TableCell align="center"> {habit.name}</TableCell>
                   <TableCell align="center">{habit.description}</TableCell>
                   <TableCell align="center">
-                    <Button variant="contained" color="secondary">
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={this.handleDelete(habit.id)}
+                    >
                       Delete
                     </Button>
                   </TableCell>
@@ -69,4 +77,8 @@ const mapStateToProps = (state) => ({
   habits: state.habits,
 });
 
-export default connect(mapStateToProps)(HabitList);
+const mapDispatchToProps = {
+  habitDelete,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HabitList);
