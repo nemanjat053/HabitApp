@@ -11,17 +11,13 @@ import {
 } from "@material-ui/core";
 import { connect } from "react-redux";
 
-import { habitDelete } from "../../redux/actions";
+import { habitDelete, habitGet } from "../../redux/actions";
 
 import "./HabitList.css";
 
 class HabitList extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      habits: [props.habits],
-    };
-
     this.handleDelete = this.handleDelete.bind(this);
   }
 
@@ -30,12 +26,12 @@ class HabitList extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      habits: this.props.habits,
-    });
+    this.props.habitGet();
   }
 
   render() {
+    const { habits } = this.props;
+
     const habitsTrue = (
       <React.Fragment>
         <h4>List of your habits</h4>
@@ -50,7 +46,7 @@ class HabitList extends Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {this.state.habits.map((habit, index) => (
+              {habits.map((habit, index) => (
                 <TableRow key={index}>
                   <TableCell component="th" scope="row">
                     {habit.id}
@@ -76,11 +72,7 @@ class HabitList extends Component {
 
     return (
       <div className="HabitList">
-        {this.state.habits.length === 0 ? (
-          <h2>There is no habit</h2>
-        ) : (
-          habitsTrue
-        )}
+        {habits.length === 0 ? <h2>There is no habit</h2> : habitsTrue}
       </div>
     );
   }
@@ -93,6 +85,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     habitDelete: (id) => dispatch(habitDelete(id)),
+    habitGet: () => {
+      dispatch(habitGet());
+    },
   };
 };
 

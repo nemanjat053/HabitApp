@@ -3,7 +3,7 @@ import { FormControl, InputLabel, Input, Button } from "@material-ui/core";
 import { connect } from "react-redux";
 
 // Dispatch actions
-import { habitAdd } from "../../redux/actions";
+import { habitAdd, habitGet } from "../../redux/actions";
 
 import "./Main.css";
 
@@ -11,15 +11,20 @@ class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: props.habits.id ? props.habits[props.habits.length - 1].id : null,
+      // TODO: Need to create id and get last id from habits
+      // TODO: To create id and set it on add
       name: "",
       description: "",
-      habits: props.habits,
+      habits: [],
     };
 
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.habitGet();
   }
 
   handleNameChange(evt) {
@@ -32,15 +37,14 @@ class Main extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.habitAdd(
-      Number(this.state.id) + 1,
-      this.state.name,
-      this.state.description
-    );
-    window.location.reload(false);
+    this.props.habitAdd(this.state.name, this.state.description);
+    alert(this.state.id);
+    // window.location.reload(false);
   }
 
   render() {
+    // TODO: Getting habits from state, from fetching data from json server
+    // const { habits } = this.props;
     return (
       <div className="Main">
         <h2>Make a habit</h2>
@@ -83,6 +87,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     habitAdd: (id, habitName, description) =>
       dispatch(habitAdd(id, habitName, description)),
+    habitGet: () => {
+      dispatch(habitGet());
+    },
   };
 };
 

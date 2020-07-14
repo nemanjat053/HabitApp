@@ -6,16 +6,13 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case actions.ADD_HABIT:
-      // TODO: Delete this after try
-      // return Object.assign({}, state, {
-      //   habits: state.habits.concat({
-      //     id: action.payload.id,
-      //     name: action.payload.name,
-      //     description: action.payload.description,
-      //   }),
-      // });
+    // case for getting fetched data
+    case actions.GET_HABIT:
+      return Object.assign({}, state, {
+        habits: action.data,
+      });
 
+    case actions.ADD_HABIT:
       return [
         ...state.habits,
         {
@@ -24,18 +21,6 @@ export default function reducer(state = initialState, action) {
           description: action.payload.description,
         },
       ];
-
-    // TODO: Delete this after try
-    // return Object.assign({}, state, {
-    //   habits: [
-    //     ...state.habits,
-    //     {
-    //       id: action.payload.id,
-    //       name: action.payload.name,
-    //       description: action.payload.description,
-    //     },
-    //   ],
-    // });
 
     case actions.DELETE_HABIT:
       return {

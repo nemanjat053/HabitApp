@@ -1,4 +1,5 @@
 import * as actions from "./actionTypes";
+import axios from "axios";
 
 export const habitAdd = (id, name, description) => ({
   type: actions.ADD_HABIT,
@@ -15,3 +16,10 @@ export const habitDelete = (id) => ({
     id,
   },
 });
+
+export const habitGet = () => {
+  return (dispatch) =>
+    axios.get("http://localhost:3004/habits").then((response) => {
+      dispatch({ type: actions.GET_HABIT, data: response.data });
+    });
+};
