@@ -14,3 +14,12 @@
     justify-content: center;
     align-items: center;
 }
+
+.error {
+    color: red;
+}
+
+.inputFields {
+    width: 300px;
+    text-align: center;
+}
